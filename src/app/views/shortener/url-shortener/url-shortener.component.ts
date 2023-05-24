@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FlaskAPIService } from '../flask-api.service'
 
 @Component({
   selector: 'app-url-shortener',
@@ -14,20 +15,30 @@ export class UrlShortenerComponent implements OnInit {
   shortURL2:string;
   longURL2:string;
 
-  constructor() { }
+  constructor(private flask:FlaskAPIService ) { }
 
   ngOnInit() {
   }
+
+  // options: {
+  //   observe?: 'response',
+  //   params?:{[param: string]:string}, 
+  //   responseType?: 'json',
+  // }
+  //res:any;
 
   //Generates the short url
   shorten() {
     console.log("this is the saved longURL:" + this.longURL);
     this.shortURL = "https://urlshortener.com/Token1";
+    this.flask.generateShort(this.longURL); //.subscribe(data => {this.res=data;});
+    //console.log("this is res: "+ this.res['returned shortURL'])
   }
 
   retrieve() {
     console.log("this is the given shortURL:" + this.shortURL2);
     this.longURL2 = "https://thisIsALongURL.com";
+    this.flask.retrieveLong(this.shortURL2);
   }
 
   //Copies things from specified textbox
