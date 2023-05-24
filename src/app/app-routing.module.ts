@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { UrlShortenerComponent } from './views/shortener/url-shortener/url-shortener.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path: '', component: UrlShortenerComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
