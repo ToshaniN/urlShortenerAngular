@@ -29,8 +29,8 @@ export class UrlShortenerComponent implements OnInit {
 
   retrieve() {
     console.log("this is the given shortURL:" + this.shortURL2);
-    this.longURL2 = "https://thisIsALongURL.com";
-    this.flask.retrieveLong(this.shortURL2);
+    this.flask.retrieveLong(this.shortURL2)
+    .subscribe((data) => {this.longURL2= data['returned longURL'];})
   }
 
   //Copies things from specified textbox

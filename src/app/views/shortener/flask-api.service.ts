@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError} from 'rxjs';
-import { HttpHeaders, HttpParams } from '@angular/common/http'
+import { HttpParams } from '@angular/common/http'
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +9,6 @@ import { HttpHeaders, HttpParams } from '@angular/common/http'
 export class FlaskAPIService {
 
   baseUrl:string = "http://localhost:5000/";
-
-  headers= new HttpHeaders()
-  .set('Content-Type', 'application/json');
-  //.set('Access-Control-Allow-Origin', '*');
 
   constructor(private httpClient : HttpClient) { }
 
@@ -22,8 +18,7 @@ export class FlaskAPIService {
     return this.httpClient.get(this.baseUrl+'WantShortURL',{params:queryParams});
   }
 
-  public retrieveLong(short:string) { //post
-    return this.httpClient.post(this.baseUrl+'WantLongURL', {shortURL:short}).subscribe(data => console.log(data));
-
+  public retrieveLong(short:string): Observable<any> {
+    return this.httpClient.post(this.baseUrl+'WantLongURL', {shortURL:short});
   }
 }
