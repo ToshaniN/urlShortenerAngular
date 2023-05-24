@@ -20,19 +20,11 @@ export class UrlShortenerComponent implements OnInit {
   ngOnInit() {
   }
 
-  // options: {
-  //   observe?: 'response',
-  //   params?:{[param: string]:string}, 
-  //   responseType?: 'json',
-  // }
-  //res:any;
-
   //Generates the short url
   shorten() {
     console.log("this is the saved longURL:" + this.longURL);
-    this.shortURL = "https://urlshortener.com/Token1";
-    this.flask.generateShort(this.longURL); //.subscribe(data => {this.res=data;});
-    //console.log("this is res: "+ this.res['returned shortURL'])
+    this.flask.generateShort(this.longURL)
+    .subscribe((data)=>{this.shortURL= data['returned shortURL'];})
   }
 
   retrieve() {
