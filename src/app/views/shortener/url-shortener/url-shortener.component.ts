@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FlaskAPIService } from '../flask-api.service'
+import { FlaskAPIService } from '../flask-api.service';
 
 @Component({
   selector: 'app-url-shortener',
@@ -15,7 +15,7 @@ export class UrlShortenerComponent implements OnInit {
   shortURL2:string;
   longURL2:string;
 
-  constructor(private flask:FlaskAPIService ) { }
+  constructor(private flask:FlaskAPIService) { }
 
   ngOnInit() {
   }
