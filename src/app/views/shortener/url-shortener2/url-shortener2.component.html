@@ -1,28 +1,28 @@
-<body>
+<!-- <body>
     <h1>URL Shortener</h1>
     <div id="generateShort">
         <h3>Enter a long URL here:</h3>
-        <form [formGroup]="getShortForm" (ngSubmit)="shorten()">
+        <form [formGroup]="formPayload" (ngSubmit)="shorten()">
             <div>
                 <label for="LongURL">Enter URL:</label>
-                <input type="text" name="Long URL" placeholder="https://example.com" formControlName="longURL" (keyup)="isChanged('long')">
-                <button type="submit" id="generate" [disabled]="getShortForm.invalid">Generate</button>
+                <input type="text" name="Long URL" placeholder="https://example.com" formControlName="givenLongURL" (keyup)="isChanged('long')">
+                <button type="submit" id="generate" [disabled]="(!formPayload.get('givenLongURL').valid)">Generate</button>
             </div>
         </form>
         <div>  
-            <label for="Short URL">Short URL:</label>
-            <input type="text" #ShortURL name="Short URL" readonly="readonly" placeholder="View short URL here" [(ngModel)]="shortURL">
-            <button type="button" id="copy" [disabled]="!shortURL" (click)="copyToClipboard('copy')">Copy</button>
+            <label for="ShortURL">Short URL:</label>
+            <input type="text" #ShortURL name="Short URL" readonly="readonly" placeholder="View short URL here" [(ngModel)]="returnedShortURL">
+            <button type="button" id="copy" [disabled]="!returnedShortURL" (click)="copyToClipboard('copy')">Copy</button>
         </div>
     </div>
 
     <div id="retrieveLong">
         <h3>Enter a short URL here:</h3>
-        <form [formGroup]="getLongForm" (ngSubmit)="retrieve()">
+        <form [formGroup]="formPayload" (ngSubmit)="retrieve()">
             <div>
                 <label for="ShortURL2">Enter URL:</label>
                 <input type="text" name="Short URL2" placeholder="https://example.com" formControlName="givenShortURL" (keyup)="isChanged('short')">
-                <button type="submit" id="retrieve" [disabled]="getLongForm.invalid">Retrieve</button>
+                <button type="submit" id="retrieve" [disabled]="(!formPayload.get('givenShortURL').valid)">Retrieve</button>
             </div>
         </form>
         <div> 
@@ -31,39 +31,17 @@
             <button type="button" id="copy2" [disabled]="!returnedLongURL" (click)="copyToClipboard('copy2')">Copy</button>
         </div>
     </div>
+</body> -->
 
-    <!-- <ng-container [ngTemplateOutlet]="urlFormTemp"
-    [ngTemplateOutletContext]="{data:data, component: 'Child'}">
-    </ng-container> -->
 
-</body>
-
-<!-- 
-    Template Things:
 <body>
     <h1>URL Shortener</h1>
-    <ng-template #urlFormTemp let-data="data" let-component="component" let-prompt="prompt" let-action="action">
-        <h2>This is for testing {{component}} and its data: {{data}}</h2>
-            <div [attr.id]="divId">
-                <h3>{{ prompt }}</h3>
-                <form [formGroup]="getShortForm" (ngSubmit)="shorten()">
-                    <div>
-                        <label for="LongURL">Enter URL:</label>
-                        <input type="text" name="Long URL" placeholder="https://example.com" formControlName="longURL" (keyup)="isChanged('long')">
-                        <button type="submit" id="generate" [disabled]="getShortForm.invalid">{{ action }}</button>
-                    </div>
-                </form>
-                <div>  
-                    <label for="Short URL">Short URL:</label>
-                    <input type="text" #ShortURL name="Short URL" readonly="readonly" placeholder="View short URL here" [(ngModel)]="shortURL">
-                    <button type="button" id="copy" [disabled]="!shortURL" (click)="copyToClipboard('copy')">Copy</button>
-                </div>
-            </div>
-    </ng-template>
+    <div id="generateShort">
+        <app-url-form #generateView action="generate" [form_json]="form_json.short_url_form" (url_form_event)="url_form_event($event)"></app-url-form>
+    </div>
 
-<app-url-form [urlFormTemp]="urlFormTemp"></app-url-form>
-
-move to css file: background-color:#ff8eff;
-
-</body> -->
+    <div id="retrieveLong">
+        <app-url-form #retrieveView action="retrieve" [form_json]="form_json.long_url_form" (url_form_event)="url_form_event($event)"></app-url-form>
+    </div>
+</body>
  

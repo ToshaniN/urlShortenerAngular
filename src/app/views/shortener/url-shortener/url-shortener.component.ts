@@ -23,13 +23,15 @@ export class UrlShortenerComponent implements OnInit {
   //Generates the short url
   shorten() {
     console.log("this is the saved longURL:" + this.longURL);
-    this.flask.generateShort(this.longURL)
+    let jsonParams = {"longURL" : this.longURL}
+    this.flask.generateShort(jsonParams)
     .subscribe((data)=>{this.shortURL= data['returned shortURL'];})
   }
 
   retrieve() {
     console.log("this is the given shortURL:" + this.shortURL2);
-    this.flask.retrieveLong(this.shortURL2)
+    let jsonParams = {"shortURL" : this.shortURL2}
+    this.flask.retrieveLong(jsonParams)
     .subscribe((data) => {this.longURL2= data['returned longURL'];})
   }
 

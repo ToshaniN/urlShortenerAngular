@@ -1,12 +1,12 @@
 /*............General............*/
 body {
-    background-color: #8EB0FF; 
+    background-color: #fce045; 
     font-family: sans-serif;
 }
 
 h1 {
     text-align: center; 
-    background-color:#8EF3FF;
+    background-color:#ff9b48;
 }
 
 h3 {                      
@@ -27,7 +27,7 @@ input {
 }
 
 button {
-    background-color:#8EF3FF; 
+    background-color:#ff9b48; 
     border-radius: 5px;
 }
 /*................................................*/
