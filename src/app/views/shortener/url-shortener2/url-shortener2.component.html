@@ -1,39 +1,3 @@
-<!-- <body>
-    <h1>URL Shortener</h1>
-    <div id="generateShort">
-        <h3>Enter a long URL here:</h3>
-        <form [formGroup]="formPayload" (ngSubmit)="shorten()">
-            <div>
-                <label for="LongURL">Enter URL:</label>
-                <input type="text" name="Long URL" placeholder="https://example.com" formControlName="givenLongURL" (keyup)="isChanged('long')">
-                <button type="submit" id="generate" [disabled]="(!formPayload.get('givenLongURL').valid)">Generate</button>
-            </div>
-        </form>
-        <div>  
-            <label for="ShortURL">Short URL:</label>
-            <input type="text" #ShortURL name="Short URL" readonly="readonly" placeholder="View short URL here" [(ngModel)]="returnedShortURL">
-            <button type="button" id="copy" [disabled]="!returnedShortURL" (click)="copyToClipboard('copy')">Copy</button>
-        </div>
-    </div>
-
-    <div id="retrieveLong">
-        <h3>Enter a short URL here:</h3>
-        <form [formGroup]="formPayload" (ngSubmit)="retrieve()">
-            <div>
-                <label for="ShortURL2">Enter URL:</label>
-                <input type="text" name="Short URL2" placeholder="https://example.com" formControlName="givenShortURL" (keyup)="isChanged('short')">
-                <button type="submit" id="retrieve" [disabled]="(!formPayload.get('givenShortURL').valid)">Retrieve</button>
-            </div>
-        </form>
-        <div> 
-            <label for="LongURL2">Long URL:</label>
-            <input type="text" #LongURL2 name="Long URL2" readonly="readonly" placeholder="View long URL here" [(ngModel)]="returnedLongURL">
-            <button type="button" id="copy2" [disabled]="!returnedLongURL" (click)="copyToClipboard('copy2')">Copy</button>
-        </div>
-    </div>
-</body> -->
-
-
 <body>
     <h1>URL Shortener</h1>
     <div id="generateShort">

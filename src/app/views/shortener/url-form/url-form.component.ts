@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, FormControlName, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-url-form',
@@ -12,12 +12,7 @@ export class UrlFormComponent implements OnInit {
   @Input() form_json;
   @Output() url_form_event = new EventEmitter<{type:string, datarec:string}>();
 
-
-  //urlPattern = /((http|https):\/\/)(www\.)?[a-zA-Z0-9@:%._\\+~#?&//=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%._\\+~#?&//=]*)/
-  formPayload: FormGroup //= new FormGroup ({
-  //     inputURL: new FormControl (''),
-  //     returnedURL: new FormControl ('')
-  //  }); 
+  formPayload: FormGroup;
 
   constructor(private fb:FormBuilder) { }
 
@@ -25,6 +20,7 @@ export class UrlFormComponent implements OnInit {
     this.initializeFormControls();
   }
 
+  // initializes the form controls and sets validators
   initializeFormControls() {
     this.formPayload = this.fb.group({
       inputURL:  [''],
@@ -37,6 +33,7 @@ export class UrlFormComponent implements OnInit {
     }
   }
 
+  // GET methods for form controls
   get inputURL() {
     return this.formPayload.get('inputURL');
   }
@@ -45,19 +42,22 @@ export class UrlFormComponent implements OnInit {
     return this.formPayload.get('returnedURL');
   }
 
+  // Emits the output event
   atEvent() {
-    //console.log("this is in child: " + JSON.stringify({type:this.action, datarec:this.inputURL.value}))
     this.url_form_event.emit({type:this.action, datarec:this.inputURL.value})
   }
 
+  // Sets the value of the output to given value
   setOutput(url:string) {
     this.returnedURL.setValue(url);
   }
   
+  // Copy output value to clipboard
   copyToClipboard() {
     navigator.clipboard.writeText(this.returnedURL.value);
   }
 
+  // Clear output value whenever input value is changed
   clearOutput() {
     this.returnedURL.setValue("");
   }
