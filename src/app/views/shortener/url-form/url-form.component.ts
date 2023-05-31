@@ -27,9 +27,7 @@ export class UrlFormComponent implements OnInit {
       returnedURL:  ['']
     })
     for (const key in this.form_json.form_validations) {
-      if (key == "inputURL") {
-        this.formPayload.controls["inputURL"].setValidators(this.form_json.form_validations.inputURL);
-      }
+      this.formPayload.controls[key].setValidators(this.form_json.form_validations[key]);
     }
   }
 

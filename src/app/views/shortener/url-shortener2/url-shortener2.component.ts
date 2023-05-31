@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { FlaskAPIService } from '../flask-api.service';
 import { UrlFormComponent } from '../url-form/url-form.component';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-url-shortener2',
@@ -66,13 +67,41 @@ export class UrlShortener2Component implements OnInit {
   shorten(longurl:string) {
     let jsonParams = {"longURL" : longurl}
     this.flask.generateShort(jsonParams)
-   .subscribe((data)=>{this.generateView.setOutput(data['returned shortURL']);})
+    .subscribe({
+      next: (data) => {
+        if (data['errCode'] == 0) {
+          this.generateView.setOutput(data['datarec']['returned shortURL']);
+          console.log("Success: " + JSON.stringify(data))
+        } else {
+          console.log("Failure: " + JSON.stringify(data))
+          alert("Error: The requested url could not be generated")
+        } 
+      },
+      error: (err) => {
+        console.error(err)
+        alert("Error: The requested url could not be generated")
+      } 
+    });
   }
 
   retrieve(shorturl:string) {
     let jsonParams = {"shortURL" : shorturl}
     this.flask.retrieveLong(jsonParams)
-    .subscribe((data) => {this.retrieveView.setOutput(data['returned longURL']);})
+    .subscribe({
+      next: (data) => { 
+        if (data['errCode'] == 0) {
+          this.retrieveView.setOutput(data['datarec']['returned longURL']);
+          console.log("Success: " + JSON.stringify(data))
+        } else {
+          console.log("Failure: " + JSON.stringify(data))
+          alert("Error: The requested url could not be retrieved")
+        }
+      },
+      error: (err) => {
+        console.error(err)
+        alert("Error: The requested url could not be retrieved")
+      }
+    });
   }
 
 }
