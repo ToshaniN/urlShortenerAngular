@@ -1,0 +1,41 @@
+<body>
+    <h1>URL Shortener</h1>
+
+    <div id="generateShort">
+        <h3>Enter a long URL here:</h3>
+        <form #generateShortURL="ngForm">
+            <div>
+                <label for="LongURL">Enter URL:</label>
+                <input type="text" #LongURL name="Long URL" required placeholder="https://example.com" 
+                    pattern="((http|https):\/\/)(www\.)?[a-zA-Z0-9@:%._\\+~#?&//=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%._\\+~#?&//=]*)"
+                    [(ngModel)]="longURL" (keyup)="isChanged('long')">
+                <button type="button" id="generate" [disabled]="generateShortURL.invalid" (click)="shorten()">Generate</button>
+            </div>
+        </form>
+        <div>  
+            <label for="Short URL">Short URL:</label>
+            <input type="text" #ShortURL name="Short URL" readonly="readonly" placeholder="View short URL here" [(ngModel)]="shortURL">
+            <button type="button" id="copy" [disabled]="!shortURL" (click)="copyToClipboard('copy')">Copy</button>
+        </div>
+    </div>
+
+    <div id="retrieveLong">
+        <h3>Enter a short URL here:</h3>
+        <form #retrieveLongURL="ngForm">
+            <div>
+                <label for="ShortURL2">Enter URL:</label>
+                <input type="text" #ShortURL2 name="Short URL2" required placeholder="https://example.com"
+                        pattern="((http|https):\/\/)(www\.)?[a-zA-Z0-9@:%._\\+~#?&//=]{2,256}\.[a-z]{2,6}\b([a-zA-Z0-9@:%._\\+~#?&//=]*)" 
+                        [(ngModel)]="shortURL2" (keyup)="isChanged('short')">
+                <button type="button" id="retrieve" [disabled]="retrieveLongURL.invalid" (click)="retrieve()">Retrieve</button>
+            </div>
+        </form>
+        <div> 
+            <label for="LongURL2">Long URL:</label>
+            <input type="text" #LongURL2 name="Long URL2" readonly="readonly" placeholder="View long URL here" [(ngModel)]="longURL2">
+            <button type="button" id="copy2" [disabled]="!longURL2" (click)="copyToClipboard('copy2')">Copy</button>
+        </div>
+    </div>
+</body>
+
+

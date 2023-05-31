@@ -1,0 +1,49 @@
+/*............General............*/
+body {
+    background-color: #fce045; 
+    font-family: sans-serif;
+}
+
+h1 {
+    text-align: center; 
+    background-color:#ff9b48;
+}
+
+h3 {                      
+    text-indent: 40px;
+}
+
+div:not(#generateShort, #retrieveLong) {
+    text-indent: 100px;
+    padding-bottom: 25px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input {
+    width: 250px;
+}
+
+button {
+    background-color:#ff9b48; 
+    border-radius: 5px;
+}
+/*................................................*/
+
+/*............Generating the short URL............*/
+#generateShort {
+    display: inline-block; 
+    width: 600px; 
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+/*................................................*/
+
+
+/*............Retrieving the long URL.............*/
+#retrieveLong {
+    display: inline-block;
+}
+/*................................................*/

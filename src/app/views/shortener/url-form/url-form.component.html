@@ -1,0 +1,14 @@
+<h3>{{ form_json.heading }}</h3>
+<form [formGroup]="formPayload">
+    <div>
+        <label for="inputName">{{ form_json.input_url_label }}</label>
+        <input type="text" name="inputName" placeholder={{form_json.input_url_placeholder}} formControlName="inputURL" (keyup)="clearOutput()">
+        <button type="button" id="action" [disabled]="(!formPayload.get('inputURL').valid)" 
+                (click)="atEvent()">{{ form_json.btn_label }}</button>
+    </div>
+    <div>  
+        <label for="ReturnedURL">{{ form_json.output_url_label }}</label>
+        <input type="text" #ReturnedURL name="ReturnedURL" readonly="readonly" placeholder={{form_json.output_url_placeholder}} formControlName="returnedURL">
+        <button type="button" id="copy" [disabled]="!formPayload.get('returnedURL').value" (click)="copyToClipboard()">Copy</button>
+    </div>
+</form>
